@@ -1,0 +1,620 @@
+ body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 20px;
+    color: #333;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    overflow-x: hidden;
+}
+.card {
+    width: 650px;
+    height: 450px;
+    position: relative;
+    perspective: 1000px;
+    animation: floatCard 6s ease-in-out infinite;
+    cursor: pointer;
+}
+.card.closed .card-inner {
+    transform: rotateY(0deg);
+}
+.card.open .card-inner {
+    transform: rotateY(180deg);
+}
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+}
+.card-front {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    border: 2px solid #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    animation: borderColorChange 5s ease-in-out infinite, frontBackgroundChange 5s ease-in-out infinite;
+}
+.card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border: 2px solid #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    animation: borderColorChange 5s ease-in-out infinite, frontBackgroundChange 5s ease-in-out infinite;
+    overflow-y: auto;
+    font-size: 0.9em;
+    text-align: left;
+    justify-content: flex-start;
+    padding: 20px;
+}
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+/* Removed hover flip for better usability */
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+}
+.front {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    border: 2px solid #003366;
+    box-shadow: 0 0 20px rgba(0, 51, 102, 0.5);
+    animation: borderColorChange 5s ease-in-out infinite, frontBackgroundChange 5s ease-in-out infinite;
+}
+.front {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    border: 2px solid #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    animation: borderColorChange 5s ease-in-out infinite, frontBackgroundChange 5s ease-in-out infinite;
+}
+.back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    font-size: 0.9em;
+    text-align: left;
+    overflow-y: auto;
+}
+.surprise {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1976d2, #1565c0);
+    color: white;
+    border-radius: 15px;
+    animation: bounceIn 1s ease-out;
+}
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+button {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
+    transition: background 0.3s, transform 0.2s;
+    animation: buttonGlow 2s ease-in-out infinite;
+}
+button:hover {
+    background: #1565c0;
+    transform: scale(1.1);
+}
+@keyframes buttonGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(25, 210, 167, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(25, 118, 210, 0.8); }
+}
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #1976d2;
+    animation: slideInFromTop 1s ease-out;
+    text-shadow: 0 0 10px currentColor;
+}
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 15px 0;
+    animation: slideInFromBottom 1.5s ease-out;
+}
+.emoji {
+    font-size: 2.5em;
+    margin: 20px 0;
+    animation: pulse 2s ease-in-out infinite;
+}
+.human {
+    width: 100px;
+    height: 100px;
+    margin: 20px 0;
+    animation: wave 2s ease-in-out infinite;
+}
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+}
+.thank-text {
+    font-size: 1.5em;
+    color: #1976d2;
+    margin: 10px 0;
+    animation: fadeInText 3s ease-in, colorChange 4s ease-in-out infinite;
+}
+.eye-catch-a {
+    color: #1976d2;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+@keyframes eyeCatchGlow {
+    0% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 0 0 5px #00d4ff; }
+    100% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), 0 0 20px #00d4ff, 0 0 30px #00d4ff; }
+}
+@keyframes colorChange {
+    0% { color: #1976d2; }
+    25% { color: #ff6b6b; }
+    50% { color: #ffa726; }
+    75% { color: #4caf50; }
+    100% { color: #1976d2; }
+}
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.back p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideInFromTop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideInFromBottom {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+.balloon {
+    position: absolute;
+    bottom: -100px;
+    font-size: 2.5em;
+    animation: floatUp 12s linear infinite;
+    z-index: -1;
+}
+@keyframes floatUp {
+    from { transform: translateY(0) rotate(0deg); opacity: 1; }
+    to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+.confetti {
+    position: absolute;
+    top: -10px;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(45deg, #ff6b6b, #ffa726);
+    animation: fall 6s linear infinite;
+    z-index: -1;
+    border-radius: 50%;
+}
+.big-gift-box {
+    font-size: 4em;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: transform 0.3s;
+}
+.big-gift-box:hover {
+    transform: scale(1.2);
+}
+@keyframes fall {
+    from { transform: translateY(0) rotate(0deg); opacity: 1; }
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+@keyframes borderColorChange {
+    0% { border-color: #00d4ff; }
+    25% { border-color: #764ba2; }
+    50% { border-color: #ff6b6b; }
+    75% { border-color: #4caf50; }
+    100% { border-color: #00d4ff; }
+}
+@keyframes frontBackgroundChange {
+    0% { background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)); }
+    25% { background: linear-gradient(135deg, rgba(0, 212, 255, 0.9), rgba(118, 75, 162, 0.7)); }
+    50% { background: linear-gradient(135deg, rgba(255, 107, 107, 0.9), rgba(255, 167, 38, 0.7)); }
+    75% { background: linear-gradient(135deg, rgba(76, 175, 80, 0.9), rgba(0, 212, 255, 0.7)); }
+    100% { background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)); }
+}
+@keyframes textColorCycle {
+    0% { color: #00d4ff; }
+    25% { color: #764ba2; }
+    50% { color: #ff6b6b; }
+    75% { color: #4caf50; }
+    100% { color: #00d4ff; }
+}
+@media (max-width: 1024px) {
+    .card {
+        width: 80%;
+        height: 400px;
+    }
+    h1 {
+        font-size: 2.2em;
+    }
+    p {
+        font-size: 1.1em;
+    }
+    .big-gift-box {
+        font-size: 3em;
+    }
+    .emoji {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .card {
+        width: 95%;
+        height: 350px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    p {
+        font-size: 1em;
+    }
+    .big-gift-box {
+        font-size: 2.5em;
+    }
+    .emoji {
+        font-size: 1.8em;
+    }
+    .thank-text {
+        font-size: 1.2em;
+    }
+    button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+    .surprise {
+        padding: 15px;
+    }
+    .riddle input {
+        width: 100%;
+        padding: 8px;
+    }
+    .riddle button {
+        width: 100%;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+        height: auto; /* Allow height to expand */
+        min-height: 500px; /* Minimum height */
+        padding: 20px;
+    }
+    .card-front, .card-content {
+        padding: 20px; /* Adjust padding for mobile */
+        height: auto; /* Allow content to expand */
+        min-height: 400px; /* Minimum height for each side */
+    }
+    .card-content {
+        overflow-y: auto; /* Ensure scrolling if needed */
+        max-height: 80vh; /* Limit max height to viewport */
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    p {
+        font-size: 0.9em;
+    }
+    .big-gift-box {
+        font-size: 2em;
+    }
+    .emoji {
+        font-size: 1.5em;
+    }
+    .thank-text {
+        font-size: 1em;
+    }
+    button {
+        padding: 15px 25px; /* Larger touch targets */
+        font-size: 1.1em;
+        min-height: 44px; /* Minimum touch target size */
+    }
+    .surprise {
+        padding: 15px;
+    }
+    .quote-section, .riddle, .fun-facts {
+        font-size: 0.9em;
+    }
+    .riddle input {
+        padding: 10px;
+        font-size: 1em;
+    }
+    .riddle button {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+    footer {
+        padding: 15px;
+        font-size: 0.8em;
+    }
+}
+/* Intellectual Enhancements */
+.quote-section {
+    margin-top: 20px;
+    font-style: italic;
+    color: #764ba2;
+    animation: quoteFade 3s ease-in-out infinite;
+}
+@keyframes quoteFade {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+.riddle {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.riddle input {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #00d4ff;
+    border-radius: 5px;
+}
+.riddle button {
+    margin-top: 10px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.fun-facts {
+    margin-top: 20px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00d4ff;
+    border-radius: 50%;
+    animation: particleFloat 8s linear infinite;
+    z-index: -1;
+}
+@keyframes particleFloat {
+    from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    to { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+.portal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #764ba2, #00d4ff);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: portalRotate 5s linear infinite;
+    z-index: -1;
+    opacity: 0.5;
+}
+@keyframes portalRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.intellectual-motif {
+    position: absolute;
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.3);
+    animation: motifGlow 4s ease-in-out infinite;
+}
+@keyframes motifGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+/* Sparkle Animations for Magical Effect */
+.sparkle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #fff 0%, #ffd700 50%, #ff69b4 100%);
+    border-radius: 50%;
+    animation: twinkle 1.5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+/* Magical Gift Animations */
+.magical-gift {
+    position: absolute;
+    font-size: 2em;
+    animation: magicalGiftFloat 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 15;
+    text-shadow: 0 0 10px currentColor;
+}
+@keyframes magicalGiftFloat {
+    0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; transform: translateY(-20px) scale(1) rotate(90deg); }
+    40% { transform: translateY(-40px) scale(1.2) rotate(180deg); }
+    60% { transform: translateY(-20px) scale(1) rotate(270deg); }
+    80% { transform: translateY(0) scale(0.8) rotate(360deg); }
+    100% { transform: translateY(20px) scale(0.5) rotate(450deg); opacity: 0; }
+}
+/* Magic Fortune Teller Styles */
+.magic-fortune {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.crystal-ball {
+    font-size: 3em;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: transform 0.3s, filter 0.3s;
+    animation: crystalGlow 3s ease-in-out infinite;
+}
+.crystal-ball:hover {
+    transform: scale(1.2);
+    filter: brightness(1.5);
+}
+@keyframes crystalGlow {
+    0%, 100% { filter: brightness(1) drop-shadow(0 0 5px rgba(0, 212, 255, 0.5)); }
+    50% { filter: brightness(1.3) drop-shadow(0 0 20px rgba(0, 212, 255, 0.8)); }
+}
+#fortune-message {
+    margin-top: 15px;
+    font-style: italic;
+    color: #9c27b0;
+    animation: fortuneReveal 1s ease-out;
+}
+@keyframes fortuneReveal {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+/* Enhanced Mobile Friendliness */
+@media (max-width: 768px) {
+    .sparkle {
+        width: 6px;
+        height: 6px;
+    }
+    .magical-gift {
+        font-size: 1.5em;
+    }
+    .cute-float {
+        font-size: 1.5em;
+    }
+    .big-gift-box {
+        font-size: 3em;
+        min-height: 60px; /* Larger touch target */
+        min-width: 60px;
+    }
+    button {
+        min-height: 50px; /* Ensure touch targets are at least 44px, but larger for better UX */
+        font-size: 1.2em;
+    }
+    .riddle input, .riddle button {
+        min-height: 44px;
+        font-size: 1em;
+    }
+    .cute-heart {
+        font-size: 2.5em;
+    }
+    .crystal-ball {
+        font-size: 2.5em;
+        min-height: 60px;
+        min-width: 60px;
+    }
+}
+@media (max-width: 480px) {
+    .sparkle {
+        width: 5px;
+        height: 5px;
+    }
+    .magical-gift {
+        font-size: 1.2em;
+    }
+    .cute-float {
+        font-size: 1.2em;
+    }
+    .big-gift-box {
+        font-size: 2.5em;
+        min-height: 70px;
+        min-width: 70px;
+    }
+    button {
+        min-height: 55px;
+        font-size: 1.3em;
+    }
+    .riddle input, .riddle button {
+        min-height: 48px;
+        font-size: 1.1em;
+    }
+    .cute-heart {
+        font-size: 2em;
+    }
+    .crystal-ball {
+        font-size: 2em;
+        min-height: 70px;
+        min-width: 70px;
+    }
+    .magic-star {
+        font-size: 2em;
+        min-height: 70px;
+        min-width: 70px;
+    }
+    /* Disable hover effects on mobile for better performance */
+    .big-gift-box:hover {
+        transform: none;
+    }
+    button:hover {
+        transform: none;
+    }
+    .crystal-ball:hover {
+        transform: none;
+    }
+    .magic-star:hover {
+        transform: none;
+    }
+}
